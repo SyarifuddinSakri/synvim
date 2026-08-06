@@ -27,7 +27,10 @@ vim.keymap.set("n", "<leader>so", builtin.oldfiles, {desc = "[S]earch [O]ldfiles
 vim.keymap.set("n", "<leader>oh", builtin.help_tags, {desc = "[O]pen [H]elp"})
 
 -- Show documents symbol
-vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, {desc = "[D]ocument [S]ymbols"})
+vim.keymap.set("n", "<leader>sd", builtin.lsp_document_symbols, {desc = "[S]earch [D]ocument Symbol"})
+
+-- Show workspace symbol
+vim.keymap.set("n", "<leader>sw", builtin.lsp_document_symbols, {desc = "[S]earch [W]orkspace Symbol"})
 
 -- fuzzy find keyword in the same file
 vim.keymap.set("n", "<leader>sz", builtin.current_buffer_fuzzy_find, { desc = "[S]earch Fu[Z]zy" })
