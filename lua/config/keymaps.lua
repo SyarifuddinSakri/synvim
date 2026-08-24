@@ -17,6 +17,48 @@ vim.keymap.set("n", "<leader>sf", builtin.find_files, {desc = "[S]earch [F]iles"
 -- Search text inside files
 vim.keymap.set("n", "<leader>sk", builtin.live_grep, {desc = "[S]earch [K]eyword"})
 
+local builtin = require("telescope.builtin")
+
+-- Normal search, prefilled with word under cursor vim.keymap.set("n", "<leader>su", function() builtin.live_grep({ default_text = vim.fn.expand("<cword>"), }) end, { desc = "[S]earch [U]nder cursor" })
+
+-- Exact word only (-w in ripgrep)
+local function search_cursor_keyword()
+    local line = vim.api.nvim_get_current_line()
+    local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+
+    -- Characters allowed inside the keyword
+    -- Everything else acts as a separator.
+    local pattern = "[%w_-]"
+
+    -- Find beginning
+    local start = col
+
+    while start > 1 and line:sub(start - 1, start - 1):match(pattern) do
+        start = start - 1
+    end
+
+    -- Find end
+    local finish = col
+
+    while finish <= #line and line:sub(finish, finish):match(pattern) do
+        finish = finish + 1
+    end
+
+    local word = line:sub(start, finish - 1)
+
+    if word == "" then
+        return
+    end
+
+    builtin.grep_string({
+        search = word,
+    })
+end
+
+vim.keymap.set("n", "<leader>su", search_cursor_keyword, {
+    desc = "[S]earch [U]nder-cursor keyword",
+})
+
 -- Search open buffers
 vim.keymap.set("n", "<leader> ", builtin.buffers, {desc = "[S]earch Buffer"})
 
