@@ -40,13 +40,13 @@ cmp.event:on(
 )
 
 -- Proper indentation upon saving
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = {
-        "*.c",
-        "*.h",
-        "*.cpp",
-    },
-    callback = function()
-        vim.lsp.buf.format()
-    end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     pattern = {
+--         "*.c",
+--         "*.h",
+--         "*.cpp",
+--     },
+--     callback = function()
+--         vim.lsp.buf.format()
+--     end,
+-- })
