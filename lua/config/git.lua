@@ -33,6 +33,11 @@ end, {
 
 local gs = require("gitsigns")
 
+vim.keymap.set("n", "<leader>gd", function()
+    vim.cmd("tab split")
+    vim.cmd("Gitsigns diffthis HEAD^")
+end, { desc = "[G]it [D]iff current file with HEAD^" })
+
 vim.keymap.set("n", "]h", gs.next_hunk, {desc = "Next Git Hunk"})
 vim.keymap.set("n", "[h", gs.prev_hunk, {desc = "Prev Git Hunk"})
 
