@@ -120,5 +120,12 @@ end, {
     desc = "[F]ile [E]xplorer",
 })
 
+--Toggle Neo-Tree
+require("neo-tree").setup({})
+
+vim.keymap.set("n", "\\", "<cmd>Neotree toggle<CR>", {
+    desc = "Toggle Neo-tree",
+})
+
 -- Show the key combinations
 local wk = require("which-key").setup({})
