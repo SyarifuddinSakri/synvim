@@ -73,6 +73,14 @@ vim.keymap.set("n", "<leader>sw", builtin.lsp_document_symbols, {desc = "[S]earc
 -- fuzzy find keyword in the same file
 vim.keymap.set("n", "<leader>sz", builtin.current_buffer_fuzzy_find, { desc = "[S]earch Fu[Z]zy" })
 
+-- Search keyword among opened file in buffer only
+vim.keymap.set("n", "<leader>sb", function()
+  builtin.live_grep({
+    grep_open_files = true,
+    prompt_title = "Live Grep Open Buffers",
+  })
+end, { desc = "[S]earch in open [B]uffers" })
+
 -- Go to Definition
 vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "[G]oto [D]efinition" })
 
